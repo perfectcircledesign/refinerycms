@@ -7,7 +7,6 @@
       <% @images.each do |image| -%>
         <li<%= ' class="selected"'.html_safe if @image_id == image.id %>>
           <%= image_fu(image, '106x106#c', {
-                         :alt => image.title,
                          :title => image.title,
                          :id => "image_#{image.id}",
                          :'data-id' => image.id
