@@ -21,6 +21,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :image_alt %>
+    <%= f.text_field :image_alt  %>
+  </div>
+
+  <div class="field">
     <label><%= t('.maximum_image_size', :bytes => number_to_human_size(Refinery::Images.max_image_size)) %></label>
   </div>
 

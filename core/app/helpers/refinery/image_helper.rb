@@ -25,7 +25,7 @@ module Refinery
         dimensions = (image.thumbnail_dimensions(geometry) rescue {})
 
         image_tag(image.thumbnail(geometry).url, {
-          :alt => image.respond_to?(:title) ? image.title : image.image_name,
+          :alt => image.alt_tag,
         }.merge(dimensions).merge(options))
       end
     end
