@@ -8,7 +8,7 @@ class CreateRefinerycmsImagesSchema < ActiveRecord::Migration
       t.integer  :image_height
       t.string   :image_uid
       t.string   :image_ext
-      t.string   :iamge_alt
+      t.string   :image_alt
 
       t.timestamps
     end
