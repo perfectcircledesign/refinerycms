@@ -97,7 +97,7 @@ module Refinery
     end
 
     def alt_tag
-      if try?(:image_alt).present?
+      if try(:image_alt).present?
         image_alt
       elsif respond_to?(:title)
         title
