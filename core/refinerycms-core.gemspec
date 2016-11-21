@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'acts_as_indexed',             '~> 0.7.7'
   s.add_dependency 'friendly_id',                 '~> 4.0.9'
-  s.add_dependency 'globalize3',                  '~> 0.3.0'
+  s.add_dependency 'globalize3',                  '0.3.0'
   s.add_dependency 'awesome_nested_set',          '~> 2.1.3'
   s.add_dependency 'rails',                       ['>= 3.1.11', '< 3.3'] | 0.upto(11).map{|i| "!= 3.2.#{i}"}
   s.add_dependency 'truncate_html',               '~> 0.5.5'
