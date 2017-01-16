@@ -24,7 +24,9 @@ module Refinery
       if image.present?
         dimensions = (image.thumbnail_dimensions(geometry) rescue {})
 
-        image_tag(image.thumbnail(geometry).url, {
+        coverted_image = image.thumbnail(geometry).encode("#{image.image_mime_type.split('/').last}", '-quality 55')
+
+        image_tag(coverted_image.url, {
           :alt => image.alt_tag,
         }.merge(dimensions).merge(options))
       end
