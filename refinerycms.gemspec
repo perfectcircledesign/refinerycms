@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_dependency    'refinerycms-images',         version
   s.add_dependency    'refinerycms-pages',          version
   s.add_dependency    'refinerycms-resources',      version
+  s.add_dependency    'aws-sdk', '2.6.14'
 end

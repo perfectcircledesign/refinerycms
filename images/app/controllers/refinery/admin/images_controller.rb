@@ -8,6 +8,8 @@ module Refinery
               :xhr_paging => true
 
       before_filter :change_list_mode_if_specified, :init_dialog
+      before_filter :set_s3_direct_post, only: [:edit, :new, :create, :update]
+      skip_before_filter :verify_authenticity_token, only: [:create, :update]
 
       def new
         @image = ::Refinery::Image.new if @image.nil?
@@ -76,6 +78,28 @@ module Refinery
         end
       end
 
+      def process_image
+          image_name = params[:image_name].force_encoding('iso-8859-1').encode('utf-8')
+          image_mime_type = params[:image_mime_type].force_encoding('iso-8859-1').encode('utf-8')
+          image_size = params[:image_size].to_s
+          image_width = params[:image_width].to_s
+          image_height = params[:image_height].to_s
+          image_uid = params[:image_uid].force_encoding('iso-8859-1').encode('utf-8')
+
+          #Refinery Image Model
+          image = Refinery::Image.new
+          image.image_name = image_name
+          image.image_mime_type = image_mime_type
+          image.image_size = image_size
+          image.image_width = image_width
+          image.image_height = image_height
+          image.image_uid = image_uid
+          image.save!
+
+          redirect_to :back, notice: 'Processing Images'
+      end
+      
+
     protected
 
       def init_dialog
@@ -103,6 +127,10 @@ module Refinery
 
       def store_current_location!
         super unless action_name == 'insert' or from_dialog?
+      end
+
+      def set_s3_direct_post
+        @s3_direct_post = S3_BUCKET.presigned_post(key: "images/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
       end
 
     end

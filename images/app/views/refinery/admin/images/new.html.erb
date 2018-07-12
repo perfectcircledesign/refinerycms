@@ -1,1 +1,21 @@
-<%= render '/refinery/admin/images/form' %>
+<%= form_for [refinery, :admin, ::Refinery::Image.new], authenticity_token: false, :html => {multiple: true, class: 'dropzone', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host }} do |f| %>
+  <div class="fallback">
+    <%= f.file_field :image %>
+    <%= f.submit 'Upload Image' %>
+  </div>
+<% end %>
+
+<%= form_tag refinery.process_image_admin_images_path, class: 'process', remote: true do %>
+  <%= hidden_field_tag :image_width %>
+  <%= hidden_field_tag :image_height %>
+  <%= hidden_field_tag :image_size %>
+  <%= hidden_field_tag :image_name %>
+  <%= hidden_field_tag :image_uid %>
+  <%= hidden_field_tag :image_mime_type %>
+  <%#= submit_tag 'Submit'  %>
+<% end %>
+
+
+<%= render '/refinery/admin/images/dropzone' %>
+
+<%#= render '/refinery/admin/images/form' %>

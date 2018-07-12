@@ -4,6 +4,9 @@ Refinery::Core::Engine.routes.prepend do
   namespace :admin, :path => 'refinery' do
     resources :images, :except => :show do
       get :insert, :on => :collection
+      collection do 
+        post :process_image
+      end
     end
   end
 end

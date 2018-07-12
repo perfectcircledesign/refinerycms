@@ -6,6 +6,18 @@ More information at [http://refinerycms.com](http://refinerycms.com)
 
 [![Build Status](https://travis-ci.org/refinery/refinerycms.png?branch=2-0-stable)](https://travis-ci.org/refinery/refinerycms)
 
+## S3 Upload Requirements
+
+### Add CORS to S3  
+    <AllowedOrigin>http://localhost:5000</AllowedOrigin>
+    <AllowedMethod>POST</AllowedMethod>
+
+### Environment Variables
+    S3_BUCKET
+    S3_KEY
+    S3_SECRET
+    S3_REGION
+
 ## Requirements
 
 * [Bundler](http://gembundler.com)

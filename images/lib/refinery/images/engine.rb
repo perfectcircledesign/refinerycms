@@ -6,6 +6,13 @@ module Refinery
       isolate_namespace Refinery
       engine_name :refinery_images
 
+      require 'aws-sdk'
+      ::Aws.config.update({
+          region: ENV['S3_REGION'] ? ENV['S3_REGION'] : 'us-east-1',
+          credentials: ::Aws::Credentials.new(ENV['S3_KEY'], ENV['S3_SECRET']),
+      })
+      S3_BUCKET = ::Aws::S3::Resource.new.bucket(ENV['S3_BUCKET'])
+
       config.autoload_paths += %W( #{config.root}/lib )
 
       initializer 'attach-refinery-images-with-dragonfly', :after => :load_config_initializers do |app|
