@@ -20,7 +20,7 @@
 
     <% if user_can_modify_images %>
       <div id="upload_image_area" class="dialog_area"<%= ' style="display:none;"'.html_safe if any_images and (no_errors or searching?) %>>
-        <%= render 'form', :insert => true %>
+        <%= render 'form', :insert => true, reload_after_upload: true %>
       </div>
     <% end %>
   <% else %>

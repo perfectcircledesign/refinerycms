@@ -11,7 +11,11 @@
     };
 
     app._dropzoneCompleteCallback = function(file, data) {
-       // $('.process').submit();
+      <% if reload_after_upload %>
+        location.reload();
+      <% else %>
+        parent.location.reload();
+      <% end %>
     }
 
     app._success = function(file, response){

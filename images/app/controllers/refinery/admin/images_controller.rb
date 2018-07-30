@@ -8,7 +8,7 @@ module Refinery
               :xhr_paging => true
 
       before_filter :change_list_mode_if_specified, :init_dialog
-      before_filter :set_s3_direct_post, only: [:edit, :new, :create, :update]
+      before_filter :set_s3_direct_post, only: [:edit, :new, :create, :update, :insert]
       skip_before_filter :verify_authenticity_token, only: [:create, :update]
 
       def new
